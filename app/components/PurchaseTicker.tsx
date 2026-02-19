@@ -20,18 +20,38 @@ export default function PurchaseTicker() {
             const data: TickerItem[] = [];
             const today = new Date();
 
-            for (let i = 0; i < 5; i++) {
+            // リアリティを出すための修飾語
+            const prefixes = ["", "平成25年式 ", "18万km ", "車検切れ ", "不動の", "過走行の", "30万km越え ", "サビあり "];
+            // リアリティを出すためのアクション
+            const actions = ["を高価買取しました！", "を即日現金化しました！", "の引取完了！", "を輸出査定！", "を入庫しました！"];
+
+            for (let i = 0; i < 8; i++) {
                 const date = new Date(today);
-                date.setDate(today.getDate() - i);
+                date.setDate(today.getDate() - Math.floor(Math.random() * 3)); // 直近3日以内
 
                 const area = TARGET_AREAS[Math.floor(Math.random() * TARGET_AREAS.length)];
                 const category = TARGET_CATEGORIES[Math.floor(Math.random() * TARGET_CATEGORIES.length)];
 
+                // 具体的な車種名を取得（なければカテゴリ名）
+                let vehicleName = category.shortName;
+                if (category.targetVehicles && category.targetVehicles.length > 0) {
+                    const v = category.targetVehicles[Math.floor(Math.random() * category.targetVehicles.length)];
+                    vehicleName = v.name;
+                }
+
+                // ランダムに修飾語をつける（30%の確率）
+                const prefix = Math.random() > 0.7 ? prefixes[Math.floor(Math.random() * prefixes.length)] : "";
+
+                // ランダムにアクションを変える
+                const action = actions[Math.floor(Math.random() * actions.length)];
+
+                // 「不動の」「サビあり」などは、廃車や重機カテゴリの時だけ出しやすくする調整などは今回は省略し、ランダムで勢いを出す
+
                 data.push({
                     date: `${date.getMonth() + 1}/${date.getDate()}`,
                     area: area.name,
-                    category: category.shortName,
-                    description: "高価買取しました！"
+                    category: `${prefix}${vehicleName}`,
+                    description: action
                 });
             }
             return data;
@@ -70,9 +90,8 @@ export default function PurchaseTicker() {
                         >
                             <span className="text-gray-400 font-mono">{item.date}</span>
                             <span className="font-bold text-orange-300">{item.area}</span>
-                            <span>で</span>
                             <span className="font-bold text-white">{item.category}</span>
-                            <span>を{item.description}</span>
+                            <span className="text-gray-300">{item.description}</span>
                         </div>
                     ))}
                 </div>
