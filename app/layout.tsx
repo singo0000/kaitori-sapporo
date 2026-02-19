@@ -3,6 +3,7 @@ import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import { SITE_INFO } from "@/app/data/config";
 import ChatWidget from "./components/ChatWidget";
+import PurchaseTicker from "./components/PurchaseTicker";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -32,8 +33,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body
-        className={`${notoSansJP.variable} font-sans antialiased`}
+        className={`${notoSansJP.variable} font-sans antialiased pt-9 sm:pt-10`}
       >
+        <PurchaseTicker />
         <div className="safe-bottom">
           {children}
         </div>

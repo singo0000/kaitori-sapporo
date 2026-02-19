@@ -5,14 +5,10 @@ import {
   SITE_INFO,
   LINE_URL,
 } from "@/app/data/config";
-import PurchaseTicker from "@/app/components/PurchaseTicker";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-950 via-blue-900 to-blue-950">
-      {/* Ticker */}
-      <PurchaseTicker />
-
       {/* Hero */}
       <section className="relative pt-20 pb-16 px-4 text-center overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNHYtNGgtdjRoNHptMCAwdi00aC00djRoNHptMCAwdjRoLTR2LTRoNHptMCAwdjRoNHYtNGgtNHpNMTYgMzR2LTRoLTR2NGg0em0wIDB2LTRoNHYtNGgtNHptMCAwdjRoNHYtNGgtNHptMCAwdjRoLTR2LTRoNHoiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvZz48L3N2Zz4=')] opacity-30" />

@@ -54,7 +54,7 @@ export default function PurchaseTicker() {
     if (items.length === 0) return null;
 
     return (
-        <div className="bg-gray-900 text-white text-xs sm:text-sm py-2 overflow-hidden border-b border-gray-800">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-gray-900 text-white text-xs sm:text-sm py-2 overflow-hidden border-b border-gray-800 shadow-md">
             <div className="max-w-6xl mx-auto px-4 flex items-center justify-center sm:justify-start gap-3">
                 <span className="bg-red-600 text-white px-2 py-0.5 rounded text-[10px] font-bold animate-pulse">
                     速報
@@ -64,8 +64,8 @@ export default function PurchaseTicker() {
                         <div
                             key={index}
                             className={`absolute top-0 left-0 w-full transition-all duration-500 flex items-center gap-2 ${index === currentIndex
-                                    ? "translate-y-0 opacity-100"
-                                    : "translate-y-full opacity-0"
+                                ? "translate-y-0 opacity-100"
+                                : "translate-y-full opacity-0"
                                 }`}
                         >
                             <span className="text-gray-400 font-mono">{item.date}</span>

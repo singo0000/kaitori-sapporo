@@ -135,7 +135,7 @@ export default function ChatWidget() {
     };
 
     return (
-        <div className="fixed bottom-24 right-4 md:bottom-5 md:right-5 z-30">
+        <div className="fixed bottom-32 right-4 md:bottom-5 md:right-5 z-30">
             {/* 閉じた状態のボタン */}
             {!isOpen && (
                 <button
