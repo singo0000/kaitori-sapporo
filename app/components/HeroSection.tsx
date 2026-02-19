@@ -7,18 +7,20 @@ interface HeroSectionProps {
     areaName: string;
     categoryName: string;
     categoryShortName: string;
+    heroImage: string;
 }
 
 export default function HeroSection({
     areaName,
     categoryName,
     categoryShortName,
+    heroImage,
 }: HeroSectionProps) {
     return (
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
             {/* Background Image */}
             <Image
-                src="/hero-trucks.png"
+                src={heroImage}
                 alt={`${categoryShortName}の買取`}
                 fill
                 className="object-cover"
@@ -26,7 +28,7 @@ export default function HeroSection({
             />
             {/* Dark overlay for readability */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-950/85 via-blue-900/80 to-blue-950/90" />
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDE0aDR2NGgtNHpNMTYgMzRoNHY0aC00ek00NiA0NGg0djRoLTR6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50" />
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNHYtNGgtdjRoNHptMCAwdi00aC00djRoNHptMCAwdjRoLTR2LTRoNHptMCAwdjRoNHYtNGgtNHpNMTYgMzR2LTRoLTR2NGg0em0wIDB2LTRoNHYtNGgtNHptMCAwdjRoNHYtNGgtNHptMCAwdjRoLTR2LTRoNHoiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvZz48L3N2Zz4=')] opacity-30" />
 
             {/* Floating particles */}
             <div className="absolute top-20 left-10 w-3 h-3 bg-orange-400 rounded-full animate-pulse opacity-60" />
@@ -50,7 +52,7 @@ export default function HeroSection({
                         {categoryShortName}
                     </span>
                     <br />
-                    を高く売るなら！
+                    を高く売るなら
                     <br />
                     <span className="text-2xl sm:text-3xl md:text-4xl text-blue-200">
                         出張買取サポート札幌へ

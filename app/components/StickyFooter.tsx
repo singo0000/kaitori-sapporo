@@ -1,24 +1,45 @@
 "use client";
 
-import { LINE_URL } from "@/app/data/config";
+import { LINE_URL, SITE_INFO } from "@/app/data/config";
 
 export default function StickyFooter() {
     return (
-        <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
+        <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden pb-safe">
             {/* Gradient overlay for smooth blend */}
-            <div className="h-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
-            <div className="bg-black/90 backdrop-blur-lg border-t border-white/10 px-4 py-3 safe-bottom">
+            <div className="h-4 bg-gradient-to-t from-gray-900/10 to-transparent pointer-events-none" />
+
+            <div className="bg-white border-t border-gray-200 px-3 py-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] flex gap-2 safe-bottom">
+
+                {/* 1. Phone Button (Secondary but important) */}
+                <a
+                    href={`tel:${SITE_INFO.phone}`}
+                    className="flex flex-col items-center justify-center bg-gray-100 text-gray-700 font-bold rounded-lg py-2 px-1 w-1/3 active:bg-gray-200 transition-colors"
+                >
+                    <svg className="w-6 h-6 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span className="text-[10px] leading-tight">電話相談</span>
+                </a>
+
+                {/* 2. LINE Button (Primary CTA) */}
                 <a
                     href={LINE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-base rounded-xl py-4 w-full shadow-lg shadow-orange-500/30 active:scale-95 transition-transform"
+                    className="flex flex-col items-center justify-center bg-[#06C755] text-white font-bold rounded-lg py-2 px-1 w-2/3 shadow-lg shadow-green-500/30 active:scale-[0.98] transition-transform relative overflow-hidden"
                 >
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.349 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
-                    </svg>
-                    LINEで査定依頼する
-                    <span className="text-xs opacity-80 ml-1">（30秒で完了）</span>
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] animate-shine" />
+
+                    <div className="flex items-center gap-1.5 mb-0.5 relative z-10">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
+                        </svg>
+                        <span className="text-sm">LINEで無料査定</span>
+                    </div>
+                    <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full relative z-10">
+                        写真を送るだけ・最短30秒
+                    </span>
                 </a>
             </div>
         </div>

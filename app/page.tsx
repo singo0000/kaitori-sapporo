@@ -5,13 +5,17 @@ import {
   SITE_INFO,
   LINE_URL,
 } from "@/app/data/config";
+import PurchaseTicker from "@/app/components/PurchaseTicker";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-950 via-blue-900 to-blue-950">
+      {/* Ticker */}
+      <PurchaseTicker />
+
       {/* Hero */}
       <section className="relative pt-20 pb-16 px-4 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDE0aDR2NGgtNHpNMTYgMzRoNHY0aC00ek00NiA0NGg0djRoLTR6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNHYtNGgtdjRoNHptMCAwdi00aC00djRoNHptMCAwdjRoLTR2LTRoNHptMCAwdjRoNHYtNGgtNHpNMTYgMzR2LTRoLTR2NGg0em0wIDB2LTRoNHYtNGgtNHptMCAwdjRoNHYtNGgtNHptMCAwdjRoLTR2LTRoNHoiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvZz48L3N2Zz4=')] opacity-30" />
 
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">

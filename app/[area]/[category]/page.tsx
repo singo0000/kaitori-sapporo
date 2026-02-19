@@ -12,6 +12,8 @@ import ProcessSection from "@/app/components/ProcessSection";
 import FAQSection from "@/app/components/FAQSection";
 import Footer from "@/app/components/Footer";
 import StickyFooter from "@/app/components/StickyFooter";
+import AreaContent from "@/app/components/AreaContent";
+import TargetVehiclesSection from "@/app/components/TargetVehiclesSection";
 
 interface PageProps {
     params: Promise<{
@@ -48,11 +50,13 @@ export async function generateMetadata({
     }
 
     const title = `${area.name}で${category.shortName}の高価買取なら${SITE_INFO.name} | 査定無料`;
-    const description = `${area.name}にお住まいで${category.shortName}の処分にお困りではありませんか？輸出直販の強みで高価買取・無料引取いたします。LINEですぐに査定可能！`;
+    const description = `${area.name}にお住まいで${category.shortName}の処分にお困りではありませんか？輸出直販の強みで高価買取・無料引取いたします。${area.description}`;
+    const keywords = [area.name, category.shortName, "買取", "査定", "廃車", ...(area.keywords || [])];
 
     return {
         title,
         description,
+        keywords,
         openGraph: {
             title,
             description,
@@ -84,14 +88,49 @@ export default async function AreaCategoryPage({ params }: PageProps) {
         notFound();
     }
 
+    // 構造化データ (BreadcrumbList)
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "TOP",
+                "item": "https://kaitori-sapporo.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": `${area.name} ${category.shortName}買取`,
+                "item": `https://kaitori-sapporo.com/${area.slug}/${category.slug}`
+            }
+        ]
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <HeroSection
                 areaName={area.name}
                 categoryName={category.name}
                 categoryShortName={category.shortName}
+                heroImage={category.heroImage}
             />
             <TrustSection />
+            <AreaContent
+                areaName={area.name}
+                categoryShortName={category.shortName}
+                areaDescription={area.description}
+                keywords={area.keywords}
+            />
+            <TargetVehiclesSection
+                categoryShortName={category.shortName}
+                targetVehicles={category.targetVehicles}
+            />
             <PainPointsSection
                 areaName={area.name}
                 categoryShortName={category.shortName}
