@@ -9,6 +9,7 @@ import {
     SITE_INFO,
     LINE_URL,
 } from "@/app/data/config";
+import { getCurrentSeasonalMessage } from "@/app/data/seasonal";
 import StickyFooter from "@/app/components/StickyFooter";
 
 type Props = {
@@ -54,11 +55,14 @@ export async function generateStaticParams() {
     return params;
 }
 
+
+
 export default function VehiclePage({ params }: Props) {
     const { area, category, vehicle } = params;
     const areaData = TARGET_AREAS.find((a) => a.slug === area);
     const categoryData = TARGET_CATEGORIES.find((c) => c.slug === category);
     const vehicleData = TARGET_VEHICLES.find((v) => v.slug === vehicle);
+    const seasonalMessage = getCurrentSeasonalMessage(); // 現在の季節メッセージを取得
 
     if (!areaData || !categoryData || !vehicleData) {
         notFound();
@@ -66,6 +70,15 @@ export default function VehiclePage({ params }: Props) {
 
     return (
         <main className="min-h-screen bg-gray-50 pb-20">
+            {/* Seasonal Alert */}
+            <div className="bg-yellow-400 text-yellow-900 px-4 py-3 text-center font-bold border-b-4 border-yellow-500 animate-pulse sticky top-12 z-40 shadow-lg">
+                <span className="text-xl mr-2">{seasonalMessage.icon}</span>
+                {seasonalMessage.title}
+                <span className="text-sm block sm:inline sm:ml-2 font-normal">
+                    {seasonalMessage.description}
+                </span>
+            </div>
+
             {/* Hero Section */}
             <section className="relative bg-gradient-to-b from-blue-900 to-blue-800 text-white pt-20 pb-16 px-4 overflow-hidden">
                 <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30" />
@@ -84,6 +97,15 @@ export default function VehiclePage({ params }: Props) {
                         <br />
                         海外輸出直販だからできる驚きの査定額をご提示します。
                     </p>
+
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-8 border border-white/20 max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300">
+                        <p className="text-yellow-300 font-bold mb-1 text-lg">
+                            {seasonalMessage.icon} {seasonalMessage.title}
+                        </p>
+                        <p className="text-sm text-blue-50">
+                            {seasonalMessage.description}
+                        </p>
+                    </div>
 
                     <a
                         href={LINE_URL}
