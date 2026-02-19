@@ -284,8 +284,180 @@ export const TARGET_CATEGORIES: Category[] = [
   },
 ];
 
-// LINE URL プレースホルダー
-export const LINE_URL = "https://lin.ee/KNy4lHy";
+// 車種データ定義
+export interface Vehicle {
+  name: string;
+  slug: string;
+  categorySlug: string; // どのカテゴリに属するか
+  maker: string;
+  description: string;
+  features: string[];
+  keywords: string[];
+}
+
+
+export const TARGET_VEHICLES: Vehicle[] = [
+  // トラック系
+  {
+    name: "エルフ",
+    slug: "elf",
+    categorySlug: "truck",
+    maker: "いすゞ",
+    description: "小型トラックの代名詞・エルフ。平ボディからダンプ、ユニックまで幅広く高価買取。",
+    features: ["国内シェアNo.1の人気車種", "海外需要が高く古くても高値", "2t/3tクラス強化買取中"],
+    keywords: ["NJR", "NKR", "平ボディ", "ダブルキャブ"],
+  },
+  {
+    name: "キャンター",
+    slug: "canter",
+    categorySlug: "truck",
+    maker: "三菱ふそう",
+    description: "粘り強い走りのキャンター。建設現場や配送で使い込まれた車両も大歓迎。",
+    features: ["頑丈なフレームで海外人気大", "古い年式でも部品価値あり", "ガッツも高価買取"],
+    keywords: ["ブルーテック", "ダンプ", "ユニック", "4WD"],
+  },
+  {
+    name: "ダイナ",
+    slug: "dyna",
+    categorySlug: "truck",
+    maker: "トヨタ",
+    description: "トヨタの信頼性・ダイナ。1tクラスから広く流通しており、どんな状態でも買取可能。",
+    features: ["トヨタブランドで安定した人気", "ガソリン車も海外で需要あり", "トヨエースも同額査定"],
+    keywords: ["ジャストロー", "カーゴ", "ルートバン"],
+  },
+  {
+    name: "フォワード",
+    slug: "forward",
+    categorySlug: "truck",
+    maker: "いすゞ",
+    description: "中型トラックの定番・フォワード。増トン車やクレーン付きは特に高額査定。",
+    features: ["4tクラスのベストセラー", "過走行でもエンジン価値が高い", "ユニック車はさらにプラス"],
+    keywords: ["FRR", "FSR", "増トン", "平ボディ"],
+  },
+  {
+    name: "レンジャー",
+    slug: "ranger",
+    categorySlug: "truck",
+    maker: "日野",
+    description: "パリダカでも有名なレンジャー。耐久性が高く、走行50万km超えでも問題なし。",
+    features: ["ヒノノニトンでおなじみ", "海外での信頼性抜群", "プロフィアも相談可"],
+    keywords: ["FD", "FC", "ユニック", "ダンプ"],
+  },
+  {
+    name: "デュトロ",
+    slug: "dutro",
+    categorySlug: "truck",
+    maker: "日野",
+    description: "スマートな小型トラック・デュトロ。市街地配送で使われた車両も高価買取。",
+    features: ["ハイブリッド車も買取強化", "ダイナの兄弟車", "AT車も需要あり"],
+    keywords: ["エアループ", "ハイブリッド", "アルミバン"],
+  },
+
+  // ハイエース・バン系
+  {
+    name: "ハイエースバン",
+    slug: "hiace-van",
+    categorySlug: "hiace",
+    maker: "トヨタ",
+    description: "キングオブ商用車・ハイエース。ボロボロ、過走行、事故車でも驚きの価格。",
+    features: ["世界中で奪い合いになる人気", "100系・200系問わず高値", "ディーゼル4WDは最強"],
+    keywords: ["スーパーGL", "DX", "ロング", "ハイルーフ"],
+  },
+  {
+    name: "レジアスエース",
+    slug: "regiusace",
+    categorySlug: "hiace",
+    maker: "トヨタ",
+    description: "ハイエースの兄弟車・レジアスエース。中身は同じなので、もちろん同様に高価買取。",
+    features: ["ハイエースと同等の査定額", "エンブレム違いなだけ", "販売終了モデルも人気"],
+    keywords: ["バン", "ディーゼル", "4WD"],
+  },
+  {
+    name: "NV350キャラバン",
+    slug: "caravan",
+    categorySlug: "hiace",
+    maker: "日産",
+    description: "日産の主力商用バン・キャラバン。仕事で使い倒した車両も大歓迎。",
+    features: ["プレミアムGX高価買取", "ディーゼル4WDは人気", "E25/E26型問わず"],
+    keywords: ["ライダー", "ロング", "ターボ"],
+  },
+  {
+    name: "ボンゴバン",
+    slug: "bongo",
+    categorySlug: "hiace",
+    maker: "マツダ",
+    description: "使い勝手の良いボンゴバン。低床・広床、どんなタイプでも買取ります。",
+    features: ["4WD車は特に北海道で人気", "バネットも同額査定", "ディーゼル車歓迎"],
+    keywords: ["GL", "DX", "4WD"],
+  },
+  {
+    name: "タウンエースバン",
+    slug: "townace",
+    categorySlug: "hiace",
+    maker: "トヨタ",
+    description: "ジャストサイズのタウンエース。配送業や職人さんに人気の車両。",
+    features: ["402系/403系高価買取", "ライトエースもOK", "コンパクトで海外人気"],
+    keywords: ["GL", "DX", "4WD"],
+  },
+
+  // 重機系
+  {
+    name: "ユンボ（油圧ショベル）",
+    slug: "excavator",
+    categorySlug: "heavy-equipment",
+    maker: "コマツ・コベルコ他",
+    description: "工事現場の主役・ユンボ。ミニユンボから超大型まで、動かなくても買取。",
+    features: ["PCシリーズ高価買取", "ゴムキャタ・鉄キャタ不問", "アタッチメントも評価"],
+    keywords: ["PC30", "PC50", "SK", "ZX"],
+  },
+  {
+    name: "ホイールローダー",
+    slug: "wheel-loader",
+    categorySlug: "heavy-equipment",
+    maker: "コマツ・CAT他",
+    description: "除雪の必需品・ホイールローダー（タイヤショベル）。冬の北海道で最強買取。",
+    features: ["除雪仕様はプラス査定", "WAシリーズ人気", "古くてもエンジンさえかかればOK"],
+    keywords: ["WA100", "WA30", "910", "ZG"],
+  },
+  {
+    name: "フォークリフト",
+    slug: "forklift",
+    categorySlug: "heavy-equipment",
+    maker: "トヨタ・コマツ他",
+    description: "物流を支えるフォークリフト。バッテリー式、エンジン式問わず買取。",
+    features: ["トヨタL&F人気", "ディーゼル車は高値", "ツメが長くても古くてもOK"],
+    keywords: ["ジェネオ", "FD25", "FG20"],
+  },
+
+  // 軽自動車
+  {
+    name: "軽トラック（キャリイ・ハイゼット）",
+    slug: "kei-truck",
+    categorySlug: "keivan",
+    maker: "スズキ・ダイハツ",
+    description: "日本の宝・軽トラ。キャリイ、ハイゼット、サンバー、アクティなど全車種対応。",
+    features: ["農家の相棒を高価買取", "ダンプ・4WDはプラス査定", "エアコンなしでもOK"],
+    keywords: ["農繁", "ジャンボ", "スーパーキャリイ"],
+  },
+  {
+    name: "軽バン（エブリイ・ハイゼットカーゴ）",
+    slug: "kei-van-cargo",
+    categorySlug: "keivan",
+    maker: "スズキ・ダイハツ",
+    description: "配送・仕事に・エブリイなどの軽バン。黒ナンバー車の廃車もお任せ。",
+    features: ["ジョイン・クルーズターボ人気", "過走行でも需要あり", "配達仕様車もOK"],
+    keywords: ["ジョイン", "クルーズ", "デッキバン"],
+  },
+  {
+    name: "ジムニー",
+    slug: "jimny",
+    categorySlug: "kei",
+    maker: "スズキ",
+    description: "軽オフロードの王者・ジムニー。古い2スト車から最新型まで、どんな状態でも買取。",
+    features: ["ボロボロでも価値あり", "JA11/JA22人気", "改造車・リフトアップも評価"],
+    keywords: ["JA11", "JB23", "JB64", "ランドベンチャー"],
+  },
+];
 
 // サイト情報
 export const SITE_INFO = {
