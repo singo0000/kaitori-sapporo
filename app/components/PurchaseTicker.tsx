@@ -22,13 +22,10 @@ export default function PurchaseTicker() {
 
             // リアリティを出すための修飾語
             const prefixes = ["", "平成25年式 ", "18万km ", "車検切れ ", "不動の", "過走行の", "30万km越え ", "サビあり "];
-            // リアリティを出すためのアクション
-            const actions = ["を高価買取しました！", "を即日現金化しました！", "の引取完了！", "を輸出査定！", "を入庫しました！"];
+            // 宣伝・募集アクション（嘘にならない表現）
+            const actions = ["を高価買取強化中！", "の査定依頼を受付中！", "を緊急募集中！", "の輸出枠拡大中！", "なら高額査定！"];
 
             for (let i = 0; i < 8; i++) {
-                const date = new Date(today);
-                date.setDate(today.getDate() - Math.floor(Math.random() * 3)); // 直近3日以内
-
                 const area = TARGET_AREAS[Math.floor(Math.random() * TARGET_AREAS.length)];
                 const category = TARGET_CATEGORIES[Math.floor(Math.random() * TARGET_CATEGORIES.length)];
 
@@ -45,10 +42,9 @@ export default function PurchaseTicker() {
                 // ランダムにアクションを変える
                 const action = actions[Math.floor(Math.random() * actions.length)];
 
-                // 「不動の」「サビあり」などは、廃車や重機カテゴリの時だけ出しやすくする調整などは今回は省略し、ランダムで勢いを出す
-
+                // 日付は不要になるので削除し、代わりに地域を目立たせる構成にする
                 data.push({
-                    date: `${date.getMonth() + 1}/${date.getDate()}`,
+                    date: "", // 日付は使わない
                     area: area.name,
                     category: `${prefix}${vehicleName}`,
                     description: action
@@ -77,7 +73,7 @@ export default function PurchaseTicker() {
         <div className="fixed top-0 left-0 right-0 z-50 bg-gray-900 text-white text-xs sm:text-sm py-2 overflow-hidden border-b border-gray-800 shadow-md">
             <div className="max-w-6xl mx-auto px-4 flex items-center justify-center sm:justify-start gap-3">
                 <span className="bg-red-600 text-white px-2 py-0.5 rounded text-[10px] font-bold animate-pulse">
-                    速報
+                    強化中
                 </span>
                 <div className="relative h-5 w-full max-w-md overflow-hidden">
                     {items.map((item, index) => (
@@ -88,10 +84,9 @@ export default function PurchaseTicker() {
                                 : "translate-y-full opacity-0"
                                 }`}
                         >
-                            <span className="text-gray-400 font-mono">{item.date}</span>
-                            <span className="font-bold text-orange-300">{item.area}</span>
-                            <span className="font-bold text-white">{item.category}</span>
-                            <span className="text-gray-300">{item.description}</span>
+                            <span className="font-bold text-orange-300">【{item.area}】</span>
+                            <span className="font-bold text-white max-w-[150px] sm:max-w-none truncate">{item.category}</span>
+                            <span className="text-gray-300 whitespace-nowrap">{item.description}</span>
                         </div>
                     ))}
                 </div>
