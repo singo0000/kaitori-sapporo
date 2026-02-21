@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   title: `${SITE_INFO.name} | 北海道札幌近郊の車買取・廃車買取`,
   description:
     "北海道札幌近郊で車の買取・廃車買取なら出張買取サポート札幌。海外輸出直販だからできる高価買取。トラック・ハイエース・事故車・農機具など何でもOK。LINEで簡単査定。",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
   robots: {
     index: true,
     follow: true,
