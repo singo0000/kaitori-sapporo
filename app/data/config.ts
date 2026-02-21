@@ -459,6 +459,9 @@ export const TARGET_VEHICLES: Vehicle[] = [
   },
 ];
 
+// LINE URL
+export const LINE_URL = "https://lin.ee/KNy4lHy";
+
 // サイト情報
 export const SITE_INFO = {
   name: "出張買取サポート札幌",
