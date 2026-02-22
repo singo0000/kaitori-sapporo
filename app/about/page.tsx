@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AboutPage() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -574,17 +575,35 @@ export default function AboutPage() {
                     <h2 className="sec-title scramble-target">MISSION_PROTOCOL</h2>
                     <span className="sec-label g"><span className="num">[01]</span> CORE_VALUE</span>
                 </div>
-                <div className="tech-border" style={{ padding: "60px 50px" }}>
-                    <h3 className="glitch-text" style={{ fontSize: "2rem", marginBottom: "30px", lineHeight: 1.5, fontWeight: 800 }}>
-                        <span className="txt-red">買取</span>・販売・情報。<br />
-                        <span className="txt-green">三つの軸</span>で、<br />
-                        あなたの最適解を見つける。
-                    </h3>
-                    <p style={{ color: "var(--c-text-light)", fontSize: "1.1rem", fontWeight: 500 }}>
-                        私たちは既存の組織論に縛られません。<br />
-                        柔軟なサービス設計と、テクノロジーによる効率化で、<br />
-                        数千年先まで残るような「信頼のサイクル」を構築します。
-                    </p>
+                <div className="tech-border" style={{ padding: "60px 50px", display: "flex", gap: "40px", flexWrap: "wrap", alignItems: "center" }}>
+                    <div style={{ flex: "1 1 400px" }}>
+                        <h3 className="glitch-text" style={{ fontSize: "2rem", marginBottom: "30px", lineHeight: 1.5, fontWeight: 800 }}>
+                            <span className="txt-red">買取</span>・販売・情報。<br />
+                            <span className="txt-green">三つの軸</span>で、<br />
+                            あなたの最適解を見つける。
+                        </h3>
+                        <p style={{ color: "var(--c-text-light)", fontSize: "1.1rem", fontWeight: 500 }}>
+                            私たちは既存の組織論に縛られません。<br />
+                            柔軟なサービス設計と、テクノロジーによる効率化で、<br />
+                            数千年先まで残るような「信頼のサイクル」を構築します。
+                        </p>
+                    </div>
+                    <div style={{ flex: "1 1 300px", position: "relative", minHeight: "300px", borderRadius: "4px", overflow: "hidden", border: "1px solid var(--c-green)", boxShadow: "0 0 15px rgba(0,210,106,0.15)" }}>
+                        <Image src="/about/car-blueprint.png" alt="Car Blueprint" fill style={{ objectFit: "cover" }} />
+                        <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", background: "rgba(255,255,255,0.85)", padding: "8px 15px", fontSize: "0.75rem", fontFamily: "var(--font-code)", borderTop: "1px solid var(--c-green)", backdropFilter: "blur(5px)" }}>
+                            <span className="txt-green">&gt;</span> ANALYZING_VEHICLE_DATA...<span className="blink-cursor"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="container" style={{ marginBottom: "50px" }}>
+                <div className="tech-border" style={{ position: "relative", height: "400px", overflow: "hidden", borderRadius: "4px" }}>
+                    <Image src="/about/sapporo-city.png" alt="Sapporo Cyber City" priority fill style={{ objectFit: "cover", objectPosition: "center 60%" }} />
+                    <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "linear-gradient(90deg, rgba(242,245,248,1) 0%, rgba(242,245,248,0.1) 20%, rgba(242,245,248,0.1) 80%, rgba(242,245,248,1) 100%)" }}></div>
+                    <div style={{ position: "absolute", bottom: "30px", left: "40px", background: "rgba(255,255,255,0.9)", padding: "12px 25px", borderLeft: "4px solid var(--c-green)", borderRight: "1px solid var(--c-green)", borderTop: "1px solid var(--c-green)", borderBottom: "1px solid var(--c-green)", fontFamily: "var(--font-code)", fontSize: "0.85rem", boxShadow: "0 10px 20px rgba(0,210,106,0.1)", backdropFilter: "blur(10px)" }}>
+                        <span className="txt-green font-bold">LOC: SAPPORO_CITY</span> <span style={{ opacity: 0.5 }}>//</span> <span className="txt-red font-bold">SNOW_PROTOCOL_ACTIVE</span>
+                    </div>
                 </div>
             </section>
 
@@ -638,9 +657,15 @@ export default function AboutPage() {
                     <h2 className="sec-title scramble-target">OPERATOR_DATA</h2>
                     <span className="sec-label g"><span className="num">[03]</span> SPECS &amp; ORIGIN</span>
                 </div>
-                <div className="tech-border" style={{ padding: "50px" }}>
-                    <div className="data-grid">
-                        <div>
+                <div className="tech-border" style={{ padding: "50px", display: "flex", gap: "50px", flexWrap: "wrap", alignItems: "center" }}>
+                    <div style={{ flex: "1 1 300px", position: "relative", minHeight: "350px", borderRadius: "4px", overflow: "hidden", border: "1px solid var(--c-green)", boxShadow: "0 0 15px rgba(0,210,106,0.15)" }}>
+                        <Image src="/about/hokkaido-hologram.png" alt="Hokkaido Hologram" fill style={{ objectFit: "cover" }} />
+                        <div style={{ position: "absolute", top: "15px", right: "15px", background: "rgba(255,255,255,0.85)", padding: "4px 10px", fontSize: "0.7rem", fontFamily: "var(--font-code)", border: "1px solid var(--c-green)", backdropFilter: "blur(5px)", fontWeight: "bold" }}>
+                            <span className="txt-red blink-cursor" style={{ marginLeft: 0, marginRight: "5px" }}></span>TRACKING_AREA
+                        </div>
+                    </div>
+                    <div style={{ flex: "1 1 400px" }}>
+                        <div className="data-grid" style={{ gridTemplateColumns: "1fr", gap: "20px" }}>
                             <div className="data-row">
                                 <span className="data-label txt-green">NAME</span>
                                 <span className="data-val">出張買取サポート札幌<br /><span className="code txt-green" style={{ fontSize: "0.85em", fontWeight: 700 }}>[ANSINJP]</span></span>
@@ -651,20 +676,15 @@ export default function AboutPage() {
                             </div>
                             <div className="data-row">
                                 <span className="data-label">BUSINESS</span>
-                                <span className="data-val">
-                                    出張査定・買取 / 中古車販売<br />
-                                    情報メディア運営 / 査定アドバイザリー
-                                </span>
+                                <span className="data-val">出張査定・買取 / 中古車販売<br />情報メディア運営 / 査定アドバイザリー</span>
                             </div>
                             <div className="data-row">
                                 <span className="data-label">RELATED</span>
                                 <span className="data-val"><a href="https://ansinjp.net/" target="_blank" rel="noreferrer" style={{ color: "var(--c-green)", textDecoration: "none", fontWeight: 700 }}>くるまど札幌 (Kurumado)</a></span>
                             </div>
-                        </div>
-                        <div>
                             <div className="data-row">
                                 <span className="data-label txt-red">LOCATION</span>
-                                <span className="data-val">〒065-0021<br />札幌市東区北21条東3-1-14<br />第2美香保ローズビラ 603</span>
+                                <span className="data-val">〒065-0021<br />札幌市東区北21条東3-1-14</span>
                             </div>
                             <div className="data-row">
                                 <span className="data-label">LICENSE</span>
@@ -672,7 +692,7 @@ export default function AboutPage() {
                             </div>
                             <div className="data-row">
                                 <span className="data-label">AFFILIATION</span>
-                                <span className="data-val">札幌商工会議所<br />発寒北商店街振興組合</span>
+                                <span className="data-val">札幌商工会議所 / 発寒北商店街振興組合</span>
                             </div>
                         </div>
                     </div>
