@@ -98,10 +98,13 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-8 px-4 text-center">
+      <footer className="border-t border-white/10 py-8 px-4 text-center flex flex-col items-center justify-center gap-2">
         <p className="text-blue-300/40 text-xs">
           © {new Date().getFullYear()} {SITE_INFO.name} All rights reserved.
         </p>
+        <a href="/about" className="text-[10px] text-blue-300/20 hover:text-green-400 hover:opacity-100 transition-all duration-700 font-mono tracking-widest select-none cursor-pointer">
+          [OPERATOR_DATA]
+        </a>
       </footer>
     </main>
   );

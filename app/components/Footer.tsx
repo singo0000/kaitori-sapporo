@@ -48,9 +48,14 @@ export default function Footer({ areaName, categoryShortName }: FooterProps) {
                 </div>
 
                 <div className="border-t border-gray-800 pt-6 text-center">
-                    <p className="text-gray-500 text-xs">
-                        © {new Date().getFullYear()} {SITE_INFO.name} All rights reserved.
-                    </p>
+                    <div className="flex justify-center items-center gap-2">
+                        <p className="text-gray-500 text-xs">
+                            © {new Date().getFullYear()} {SITE_INFO.name} All rights reserved.
+                        </p>
+                        <a href="/about" className="text-[10px] text-gray-500 opacity-20 hover:opacity-100 hover:text-green-500 transition-all duration-700 font-mono tracking-widest select-none cursor-pointer">
+                            [OPERATOR_DATA]
+                        </a>
+                    </div>
                     <p className="text-gray-600 text-xs mt-1">
                         {areaName} {categoryShortName}買取専門ページ
                     </p>
