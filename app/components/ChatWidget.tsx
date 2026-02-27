@@ -140,7 +140,7 @@ export default function ChatWidget() {
             {!isOpen && (
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="bg-orange-500 hover:bg-orange-600 text-white rounded-full p-4 shadow-lg flex items-center gap-2 animate-bounce hover:animate-none transition-all"
+                    className="bg-blue-600 hover:bg-blue-600 text-white rounded-full p-4 shadow-lg flex items-center gap-2 animate-bounce hover:animate-none transition-all"
                 >
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
@@ -153,7 +153,7 @@ export default function ChatWidget() {
             {isOpen && (
                 <div className="bg-white rounded-2xl shadow-2xl w-[350px] max-w-[90vw] overflow-hidden border border-gray-200 flex flex-col h-[500px]">
                     {/* ヘッダー */}
-                    <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-4 flex justify-between items-center text-white">
+                    <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4 flex justify-between items-center text-white">
                         <h3 className="font-bold flex items-center gap-2">
                             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                             査定アシスタント

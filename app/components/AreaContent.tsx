@@ -11,7 +11,7 @@ export default function AreaContent({ areaName, categoryShortName, areaDescripti
     return (
         <section className="py-16 bg-white">
             <div className="max-w-4xl mx-auto px-4">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-orange-500 pl-4">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-blue-500 pl-4">
                     {areaName}での{categoryShortName}買取について
                 </h2>
 
@@ -54,11 +54,11 @@ export default function AreaContent({ areaName, categoryShortName, areaDescripti
                             {areaName}内であれば、ご自宅はもちろん、職場、農地、資材置き場など、
                             動かないお車がある場所まで無料で出張査定に伺います。
                         </p>
-                        <div className="bg-orange-50 border border-orange-100 p-4 rounded-lg text-center">
-                            <p className="font-bold text-orange-800 mb-2">
+                        <div className="bg-blue-600 border border-blue-500 p-4 rounded-lg text-center">
+                            <p className="font-bold text-blue-600 mb-2">
                                 出張費・引取費用・手続き代行
                             </p>
-                            <p className="text-2xl font-black text-orange-600">
+                            <p className="text-2xl font-black text-blue-600">
                                 すべて完全無料
                             </p>
                         </div>

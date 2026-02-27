@@ -84,7 +84,7 @@ export default function PurchaseTicker() {
                                 : "translate-y-full opacity-0"
                                 }`}
                         >
-                            <span className="font-bold text-orange-300">【{item.area}】</span>
+                            <span className="font-bold text-blue-600">【{item.area}】</span>
                             <span className="font-bold text-white max-w-[150px] sm:max-w-none truncate">{item.category}</span>
                             <span className="text-gray-300 whitespace-nowrap">{item.description}</span>
                         </div>

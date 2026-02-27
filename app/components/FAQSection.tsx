@@ -76,7 +76,7 @@ export default function FAQSection({ areaName, categoryShortName }: FAQSectionPr
                             </summary>
                             <div className="px-6 pb-5 pt-0">
                                 <div className="flex items-start gap-4">
-                                    <span className="flex-shrink-0 w-8 h-8 bg-orange-500 text-white text-sm font-bold rounded-lg flex items-center justify-center mt-0.5">
+                                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white text-sm font-bold rounded-lg flex items-center justify-center mt-0.5">
                                         A
                                     </span>
                                     <p className="text-gray-600 leading-relaxed">{faq.answer}</p>

@@ -31,24 +31,24 @@ export default function HeroSection({
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNHYtNGgtdjRoNHptMCAwdi00aC00djRoNHptMCAwdjRoLTR2LTRoNHptMCAwdjRoNHYtNGgtNHpNMTYgMzR2LTRoLTR2NGg0em0wIDB2LTRoNHYtNGgtNHptMCAwdjRoNHYtNGgtNHptMCAwdjRoLTR2LTRoNHoiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvZz48L3N2Zz4=')] opacity-30" />
 
             {/* Floating particles */}
-            <div className="absolute top-20 left-10 w-3 h-3 bg-orange-400 rounded-full animate-pulse opacity-60" />
+            <div className="absolute top-20 left-10 w-3 h-3 bg-blue-600 rounded-full animate-pulse opacity-60" />
             <div className="absolute top-40 right-20 w-2 h-2 bg-blue-300 rounded-full animate-bounce opacity-40" />
-            <div className="absolute bottom-32 left-1/4 w-4 h-4 bg-orange-300 rounded-full animate-pulse opacity-30" />
+            <div className="absolute bottom-32 left-1/4 w-4 h-4 bg-blue-600 rounded-full animate-pulse opacity-30" />
 
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8 animate-fade-in">
                     <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                     <span className="text-white/90 text-sm font-medium">
-                        {areaName}エリア対応 ─ 出張査定<span className="text-orange-300 font-bold">無料</span>
+                        {areaName}エリア対応 ─ 出張査定<span className="text-blue-600 font-bold">無料</span>
                     </span>
                 </div>
 
                 {/* Main Copy */}
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
-                    <span className="text-orange-400">【{areaName}】</span>で
+                    <span className="text-blue-600">【{areaName}】</span>で
                     <br className="sm:hidden" />
-                    <span className="bg-gradient-to-r from-orange-300 to-orange-500 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
                         {categoryShortName}
                     </span>
                     <br />
@@ -61,7 +61,7 @@ export default function HeroSection({
 
                 {/* Sub Copy */}
                 <p className="text-lg sm:text-xl text-blue-100/90 mb-4 font-medium">
-                    海外輸出直販だからできる<span className="text-orange-300 font-bold">高価買取</span>。
+                    海外輸出直販だからできる<span className="text-blue-600 font-bold">高価買取</span>。
                     <br className="sm:hidden" />
                     動かない車もOK。
                 </p>
@@ -75,7 +75,7 @@ export default function HeroSection({
                     href={LINE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg sm:text-xl font-bold rounded-2xl px-8 sm:px-12 py-5 sm:py-6 shadow-2xl shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 active:scale-95"
+                    className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-600 hover:to-blue-700 text-white text-lg sm:text-xl font-bold rounded-2xl px-8 sm:px-12 py-5 sm:py-6 shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 active:scale-95"
                 >
                     {/* Shine effect */}
                     <span className="absolute inset-0 rounded-2xl overflow-hidden">

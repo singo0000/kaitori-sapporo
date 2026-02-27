@@ -90,7 +90,7 @@ export default function TrustSection() {
                             className="group relative bg-gradient-to-b from-blue-50/50 to-white border border-blue-100 rounded-2xl p-8 text-center hover:shadow-xl hover:shadow-blue-100/50 transition-all duration-300 hover:-translate-y-1"
                         >
                             {/* Number badge */}
-                            <div className="absolute -top-3 -right-3 w-8 h-8 bg-orange-500 text-white text-sm font-bold rounded-full flex items-center justify-center shadow-lg">
+                            <div className="absolute -top-3 -right-3 w-8 h-8 bg-blue-600 text-white text-sm font-bold rounded-full flex items-center justify-center shadow-lg">
                                 {index + 1}
                             </div>
 

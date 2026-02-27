@@ -12,7 +12,7 @@ export default function Footer({ areaName, categoryShortName }: FooterProps) {
                 <div className="grid md:grid-cols-3 gap-8 mb-10">
                     {/* Company Info */}
                     <div>
-                        <h3 className="text-lg font-bold mb-4 text-orange-400">{SITE_INFO.name}</h3>
+                        <h3 className="text-lg font-bold mb-4 text-blue-600">{SITE_INFO.name}</h3>
                         <p className="text-gray-400 text-sm leading-relaxed mb-4">
                             北海道札幌近郊を中心に、{categoryShortName}の出張買取を行っております。
                             海外輸出直販の強みを活かし、どこよりも高価な買取を目指しています。
@@ -25,7 +25,7 @@ export default function Footer({ areaName, categoryShortName }: FooterProps) {
                         <p className="text-gray-400 text-sm leading-relaxed">
                             札幌市・江別市・北広島市・小樽市・千歳市・石狩市・恵庭市・岩見沢市
                             <br />
-                            <span className="text-orange-300">※上記以外のエリアもご相談ください</span>
+                            <span className="text-blue-600">※上記以外のエリアもご相談ください</span>
                         </p>
                     </div>
 
