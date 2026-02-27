@@ -51,11 +51,11 @@ export default function HomePage() {
         setStatus('ok');
       } else {
         setStatus('err');
-        alert(`エラー: ${data.message}`); // 原因をポップアップで表示
+        console.error(`Contact Error: ${data.message}`);
       }
     } catch (e: any) {
       setStatus('err');
-      alert(`通信エラーが発生しました: ${e.message}`);
+      console.error(`Communication Error: ${e.message}`);
     }
   };
 
