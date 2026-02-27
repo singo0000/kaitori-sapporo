@@ -59,40 +59,27 @@ export default function AboutPage() {
 
             {/* Message Section */}
             <section className="py-24">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col md:flex-row gap-16 items-center">
-                        <div className="flex-1 space-y-6">
-                            <h2 className="text-sm font-bold text-blue-600 tracking-widest uppercase mb-2">Message</h2>
-                            <h3 className="text-3xl font-bold text-slate-900">代表メッセージ</h3>
-                            <div className="prose prose-slate text-slate-600 leading-relaxed space-y-4">
-                                <p>
-                                    「出張買取サポート札幌」は、一人ひとりのお客様に寄り添い、最適な解決策を提案し続けてきました。車の売却や購入は、人生の中でも大きな決断の一つです。
-                                </p>
-                                <p>
-                                    そのため、私たちは単なる買取業者としてだけではなく、お客様の「満足と安心」を最優先に考えたサービスを提供しています。
-                                </p>
-                                <p>
-                                    車の知識だけでなく、お客様とのコミュニケーションを大切にし、信頼されるパートナーであり続けるために努力を惜しみません。
-                                </p>
-                                <p>
-                                    私たちのサービスは、ただ車を売ったり買ったりするだけにとどまりません。出張買取やアプリを活用した便利な査定など、時代に合わせたサービスを提供することで、お客様にとってより便利で効率的な選択肢をお届けします。
-                                </p>
-                                <p>
-                                    今後とも、お客様の信頼に応えるべく、精進してまいりますので、どうぞよろしくお願いいたします。
-                                </p>
-                                <div className="pt-4">
-                                    <p className="text-slate-900 font-bold border-l-4 border-blue-600 pl-4">代表　大渕新吾</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="w-full md:w-80 h-96 bg-slate-200 rounded-3xl overflow-hidden shadow-2xl relative">
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
-                            {/* プレースホルダー画像：ビジネスマンのイメージ */}
-                            <img
-                                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80"
-                                alt="代表 大渕新吾"
-                                className="w-full h-full object-cover"
-                            />
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-sm font-bold text-blue-600 tracking-widest uppercase mb-2 text-center">Message</h2>
+                    <h3 className="text-3xl font-bold text-slate-900 text-center mb-10">運営からのメッセージ</h3>
+                    <div className="bg-slate-50 border border-slate-200 rounded-2xl p-10 space-y-5 text-slate-600 leading-relaxed">
+                        <p>
+                            「出張買取サポート札幌」は、一人ひとりのお客様に寄り添い、最適な解決策を提案し続けてきました。車の売却や購入は、人生の中でも大きな決断の一つです。
+                        </p>
+                        <p>
+                            そのため、私たちは単なる買取業者としてだけではなく、お客様の「満足と安心」を最優先に考えたサービスを提供しています。
+                        </p>
+                        <p>
+                            車の知識だけでなく、お客様とのコミュニケーションを大切にし、信頼されるパートナーであり続けるために努力を惜しみません。
+                        </p>
+                        <p>
+                            私たちのサービスは、ただ車を売ったり買ったりするだけにとどまりません。出張買取やアプリを活用した便利な査定など、時代に合わせたサービスを提供することで、お客様にとってより便利で効率的な選択肢をお届けします。
+                        </p>
+                        <p>
+                            今後とも、お客様の信頼に応えるべく、精進してまいりますので、どうぞよろしくお願いいたします。
+                        </p>
+                        <div className="pt-4">
+                            <p className="text-slate-700 font-bold border-l-4 border-blue-600 pl-4">出張買取サポート札幌 スタッフ一同</p>
                         </div>
                     </div>
                 </div>
@@ -105,7 +92,6 @@ export default function AboutPage() {
                     <div className="grid grid-cols-1 gap-px bg-slate-800 rounded-2xl overflow-hidden border border-slate-800">
                         {[
                             { label: "会社名", val: "出張買取サポート札幌" },
-                            { label: "代表", val: "大渕新吾" },
                             { label: "所在地", val: "北海道札幌市東区北21条東3-1-14-603 第2美香保ローズビラ" },
                             { label: "主な事業内容", val: "車の出張査定買取サービス、中古車販売サービス、自動車総合情報サイトの運営、査定アドバイザー業務" },
                             { label: "関連サービス", val: "くるまど札幌／KURUMADO Sapporo" },
