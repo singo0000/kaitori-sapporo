@@ -1,11 +1,11 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   MessageCircle,
   MapPin,
   CheckCircle2,
-  ChevronRight,
   AlertCircle,
   Phone,
   Clock,
@@ -13,9 +13,7 @@ import {
   MessageSquare,
   History,
   Star,
-  Truck,
   Car,
-  Zap,
 } from "lucide-react";
 import {
   TARGET_AREAS,
@@ -31,10 +29,8 @@ export default function HomePage() {
       {/* ─── Navigation ─── */}
       <nav className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-blue-700 font-black text-lg leading-tight tracking-tight">
-              出張買取<br className="hidden sm:block" />サポート札幌
-            </span>
+          <Link href="/" className="font-black text-blue-800 text-lg leading-tight">
+            出張買取サポート札幌
           </Link>
           <div className="flex items-center gap-6">
             <div className="hidden md:flex gap-6 text-sm font-medium text-slate-600">
@@ -56,21 +52,30 @@ export default function HomePage() {
       </nav>
 
       {/* ─── Hero ─── */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-20 px-4">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          <div className="flex-1">
+      <section className="relative bg-blue-900 text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-inspection.png"
+            alt="札幌 出張車査定の様子"
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
+        </div>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 py-20 md:py-28">
+          <div className="max-w-2xl">
             <p className="text-blue-200 text-sm font-bold mb-4 flex items-center gap-2">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse inline-block" />
               北海道札幌近郊 出張査定無料
             </p>
             <h1 className="text-3xl md:text-5xl font-black leading-tight mb-6">
-              買取後もあんしん<br />
-              <span className="text-blue-200">ライフサポート付</span><br />
-              クルマ買取サービス
+              どんな車でも<br />
+              <span className="text-blue-300">誠実に高価買取</span><br />
+              出張・査定・手続き無料
             </h1>
-            <p className="text-blue-100 text-base leading-relaxed mb-8 max-w-lg">
-              【安心リリース買取】　お客様の大切なお車を査定から引き取りまで、誠実に対応します。
-              買取後の生活もサポートするプロがそばにいます。
+            <p className="text-blue-100 text-base leading-relaxed mb-8 max-w-xl">
+              故障車・不動車・過走行車もOK。海外輸出直販ルートだからできる高価査定。
+              スタッフがご自宅まで出張し、その場で金額を提示します。
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
@@ -86,28 +91,27 @@ export default function HomePage() {
                 href="#contact"
                 className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold px-8 py-4 rounded-xl transition-colors text-lg"
               >
-                Webからお問い合わせ
+                お問い合わせフォームへ
               </a>
             </div>
           </div>
-          <div className="flex-shrink-0 grid grid-cols-1 gap-3 w-full md:w-64">
-            {[
-              { label: "出張査定", desc: "ご自宅まで無料で伺います" },
-              { label: "査定無料", desc: "費用は一切かかりません" },
-              { label: "手続き代行", desc: "名義変更も完全無料" },
-            ].map((item, i) => (
-              <div key={i} className="bg-white/10 backdrop-blur border border-white/20 rounded-xl p-4 flex items-center gap-3">
-                <CheckCircle2 size={20} className="text-green-400 flex-shrink-0" />
-                <div>
-                  <p className="font-bold text-white text-sm">{item.label}</p>
-                  <p className="text-blue-200 text-xs">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-            <p className="text-blue-300 text-xs text-center leading-relaxed mt-1">
-              ※無料サービスは現在、札幌市内限定
-            </p>
-          </div>
+        </div>
+      </section>
+
+      {/* ─── 3つの無料バッジ ─── */}
+      <section className="bg-blue-800 text-white py-4 px-4">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 text-sm font-bold">
+          {[
+            "出張費ゼロ円",
+            "査定費ゼロ円",
+            "手続き費ゼロ円",
+          ].map((item, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <CheckCircle2 size={16} className="text-green-400" />
+              <span>{item}</span>
+            </div>
+          ))}
+          <span className="text-blue-300 text-xs">※無料サービスは現在、札幌市内限定</span>
         </div>
       </section>
 
@@ -115,13 +119,13 @@ export default function HomePage() {
       <section className="py-16 px-4 bg-slate-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-black text-center mb-2">こんなクルマもお任せください</h2>
-          <p className="text-slate-500 text-center mb-10">どんな状態でも、誠実に査定いたします。</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <p className="text-slate-500 text-center text-sm mb-10">他店で断られたお車もぜひご相談ください。</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
             {[
               { title: "キズ・凹みあり", desc: "状態に関わらず適正に査定します" },
               { title: "故障・不動車", desc: "レッカー無料でお引取りします" },
-              { title: "走行多い", desc: "過走行でも海外ルートで高価買取" },
-              { title: "車検切れ", desc: "車検不要でそのまま買取OK" },
+              { title: "過走行車", desc: "海外ルートで高くお伝えします" },
+              { title: "車検切れ", desc: "そのまま買取対応できます" },
             ].map((item, i) => (
               <div key={i} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                 <div className="flex items-center gap-2 mb-2">
@@ -132,6 +136,16 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          {/* 車の画像 */}
+          <div className="rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src="/various-cars.png"
+              alt="買取対象となる様々な車種"
+              width={1200}
+              height={500}
+              className="w-full object-cover max-h-72"
+            />
+          </div>
         </div>
       </section>
 
@@ -139,10 +153,10 @@ export default function HomePage() {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-black text-center mb-2">「買取」と「オークション出品」どちらが高く売れる？</h2>
-          <p className="text-slate-500 text-center mb-10 text-sm">札幌の相場を知り尽くしたプロが、最適な売却方法をご提案します。</p>
+          <p className="text-slate-500 text-center mb-10 text-sm">お客様の状況に合わせて、プロが最適な売却方法をご提案します。</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* 買取 */}
-            <div className="border border-slate-200 rounded-2xl p-8">
+            <div className="border border-slate-200 rounded-2xl p-8 bg-slate-50">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
                   <Car size={20} className="text-blue-600" />
@@ -157,7 +171,7 @@ export default function HomePage() {
                   "最短即日査定・即日引取り可能",
                   "故障車・不動車もその場で現金化",
                   "名義変更など手続きも完全無料",
-                  "明確な根拠をご説明した上で提示",
+                  "根拠を明確にした上で金額を提示",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-slate-700">
                     <CheckCircle2 size={16} className="text-blue-500 mt-0.5 flex-shrink-0" />
@@ -170,7 +184,7 @@ export default function HomePage() {
               </p>
             </div>
             {/* オークション */}
-            <div className="border border-blue-600 bg-blue-900 text-white rounded-2xl p-8">
+            <div className="border border-blue-700 bg-blue-900 text-white rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
                   <Star size={20} className="text-yellow-300" />
@@ -215,12 +229,12 @@ export default function HomePage() {
               {
                 icon: <ShieldCheck size={24} className="text-blue-600" />,
                 title: "価格の根拠を提示",
-                desc: "「なぜこの金額なのか」を市場データに基づいて説明します。不当な減額・不透明な駆け引きはいたしません。",
+                desc: "「なぜこの金額なのか」を市場データに基づいて丁寧に説明します。不当な減額・不透明な交渉はいたしません。",
               },
               {
                 icon: <History size={24} className="text-blue-600" />,
                 title: "手続き完全代行",
-                desc: "名義変更・廃車手続き・所有権解除など、面倒な役所手続きはすべて無料で代行いたします。",
+                desc: "名義変更・廃車手続きなど、面倒な役所手続きはすべて無料で代行いたします。",
               },
             ].map((item, i) => (
               <div key={i} className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
@@ -233,29 +247,46 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── 買取の流れ ─── */}
+      {/* ─── 買取の流れ（画像入り） ─── */}
       <section className="py-16 px-4 bg-white">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-black text-center mb-10">出張査定・買取の流れ</h2>
-          <div className="space-y-8">
-            {[
-              { step: "Step 1", title: "まずはご予約", desc: "お電話・WEB・公式LINEから24時間受け付けています。個別チャットでの相談も可能です。" },
-              { step: "Step 2", title: "無料出張査定", desc: "スタッフがご自宅まで無料でお伺いします。お忙しい方でも安心してご利用いただけます。" },
-              { step: "Step 3", title: "お車の査定", desc: "その場でスピーディーかつ丁寧に査定金額をご提示いたします。" },
-              { step: "Step 4", title: "お取引の確認", desc: "ご納得いただければ、引取り日・お支払い日を決定します。" },
-              { step: "Step 5", title: "書類とお支払い", desc: "書類の受け渡しと代金のお支払いを行い、お車をお引取りします。" },
-              { step: "Step 6", title: "車内の最終確認", desc: "忘れ物がないかを一緒にチェックしてから安心してお引渡しください。" },
-            ].map((item, i) => (
-              <div key={i} className="flex items-start gap-5">
-                <div className="flex-shrink-0 w-20 text-right">
-                  <span className="text-xs font-black text-blue-600 bg-blue-50 px-2 py-1 rounded-lg whitespace-nowrap">{item.step}</span>
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
+          <div className="flex-1">
+            <h2 className="text-2xl md:text-3xl font-black mb-10">出張査定・買取の流れ</h2>
+            <div className="space-y-8">
+              {[
+                { step: "Step 1", title: "まずはご予約", desc: "お電話・WEB・公式LINEから24時間受け付けています。" },
+                { step: "Step 2", title: "無料出張査定", desc: "スタッフがご自宅まで無料でお伺いします。" },
+                { step: "Step 3", title: "お車の査定", desc: "その場でスピーディーかつ丁寧に金額をご提示します。" },
+                { step: "Step 4", title: "お取引の確認", desc: "ご納得いただければ引取り日・お支払い日を決定します。" },
+                { step: "Step 5", title: "書類とお支払い", desc: "書類と代金をお支払いし、お車をお引取りします。" },
+                { step: "Step 6", title: "車内の最終確認", desc: "忘れ物がないかを一緒にチェックして完了です。" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-5">
+                  <div className="flex-shrink-0">
+                    <span className="text-xs font-black text-blue-600 bg-blue-50 border border-blue-100 px-2 py-1 rounded-lg whitespace-nowrap block text-center">{item.step}</span>
+                  </div>
+                  <div className="border-l-2 border-slate-200 pl-6 pb-2 flex-1">
+                    <h3 className="font-bold text-slate-900 mb-1">{item.title}</h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+                  </div>
                 </div>
-                <div className="border-l-2 border-slate-200 pl-6 pb-2 flex-1">
-                  <h3 className="font-bold text-slate-900 mb-1">{item.title}</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+          {/* 画像 */}
+          <div className="w-full lg:w-96 flex-shrink-0">
+            <div className="rounded-2xl overflow-hidden shadow-xl">
+              <Image
+                src="/kaitori-payment.png"
+                alt="出張買取で代金を受け取る様子"
+                width={600}
+                height={700}
+                className="w-full object-cover"
+              />
+            </div>
+            <p className="text-xs text-slate-400 text-center mt-3">
+              お客様のご自宅でのスムーズなお取引イメージ
+            </p>
           </div>
         </div>
       </section>
@@ -273,15 +304,15 @@ export default function HomePage() {
             {TARGET_CATEGORIES.map((category) => (
               <div key={category.slug}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-1 h-6 bg-blue-600 rounded-full" />
-                  <h3 className="font-bold text-slate-800">{category.shortName}</h3>
+                  <div className="w-1 h-5 bg-blue-600 rounded-full" />
+                  <h3 className="font-bold text-slate-800 text-sm">{category.shortName}</h3>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-2">
                   {TARGET_AREAS.map((area) => (
                     <Link
                       key={`${area.slug}-${category.slug}`}
                       href={`/${area.slug}/${category.slug}`}
-                      className="bg-white border border-slate-200 hover:border-blue-400 rounded-lg px-3 py-2 text-center text-xs font-medium text-slate-600 hover:text-blue-600 transition-all shadow-sm"
+                      className="bg-white border border-slate-200 hover:border-blue-400 hover:text-blue-600 rounded-lg px-3 py-2 text-center text-xs font-medium text-slate-600 transition-all shadow-sm"
                     >
                       {area.name}
                     </Link>
@@ -305,7 +336,11 @@ export default function HomePage() {
             <div className="space-y-6 text-sm">
               {[
                 { icon: <Clock size={18} className="text-blue-600" />, label: "営業時間", content: "平日 10:00〜18:00（土日祝定休）" },
-                { icon: <Phone size={18} className="text-blue-600" />, label: "電話番号", content: <a href="tel:050-1724-2478" className="font-bold text-blue-700 text-lg">050-1724-2478</a> },
+                {
+                  icon: <Phone size={18} className="text-blue-600" />,
+                  label: "電話番号",
+                  content: <a href="tel:050-1724-2478" className="font-black text-blue-700 text-xl">050-1724-2478</a>
+                },
                 { icon: <MapPin size={18} className="text-blue-600" />, label: "所在地", content: "〒065-0021 北海道札幌市東区北21条東3-1-14-603 第2美香保ローズビラ" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4">
@@ -316,7 +351,7 @@ export default function HomePage() {
                   </div>
                 </div>
               ))}
-              <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-3 text-amber-800 text-xs leading-relaxed mt-4">
+              <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-3 text-amber-800 text-xs leading-relaxed">
                 <AlertCircle size={16} className="flex-shrink-0 mt-0.5" />
                 <p>オフィスでの直接持ち込み査定は行っておりません。事前にご予約をお願いいたします。</p>
               </div>
@@ -334,7 +369,7 @@ export default function HomePage() {
               <input type="tel" placeholder="お電話番号" className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-400 transition" />
               <input type="email" placeholder="メールアドレス" className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-400 transition" />
               <textarea placeholder="お問い合わせ内容" className="w-full h-28 bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-400 transition resize-none"></textarea>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-colors">
+              <button className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 rounded-lg transition-colors">
                 送信する
               </button>
               <p className="text-xs text-slate-400 text-center">
@@ -359,7 +394,7 @@ export default function HomePage() {
       <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm">
         <div className="bg-white shadow-2xl rounded-2xl p-3 flex items-center justify-between border border-slate-200">
           <div className="pl-2">
-            <p className="text-xs text-slate-400 font-bold">電話でのお問い合わせ</p>
+            <p className="text-xs text-slate-400 font-bold">お電話でのお問い合わせ</p>
             <a href="tel:050-1724-2478" className="text-lg font-black text-slate-900 leading-none">050-1724-2478</a>
           </div>
           <a
