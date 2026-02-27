@@ -25,13 +25,8 @@ export default function PrivacyPolicy() {
                             <ul className="list-decimal pl-6 space-y-2">
                                 <li>弊社サービスの提供・運営のため</li>
                                 <li>お客様からのお問い合わせに回答するため（本人確認を行うことを含む）</li>
-                                <li>お客様が利用中のサービスの新機能、更新情報、懸賞、キャンペーン等及び弊社が提供する他のサービスの案内のメールを送付するため</li>
                                 <li>メンテナンス、重要なお知らせなど必要に応じたご連絡のため</li>
-                                <li>利用規約に違反したお客様や、不正・不当な目的でサービスを利用しようとするお客様の特定をし、ご利用をお断りするため</li>
-                                <li>お客様にご自身の登録情報の閲覧や変更、削除、ご利用状況の閲覧を行っていただくため</li>
                                 <li>統計データ等、個人を特定できないデータを作成するため</li>
-                                <li>当社の新しいサービス、商品等を研究・開発するため</li>
-                                <li>有料サービスにおいて、お客様に利用料金を請求するため</li>
                                 <li>上記の利用目的に付随する目的</li>
                             </ul>
                         </section>
@@ -52,7 +47,7 @@ export default function PrivacyPolicy() {
                                 </div>
                                 <div>
                                     <h3 className="text-lg font-medium text-slate-800 mb-3">2. 人的安全管理措置</h3>
-                                    <p>弊社は、人的安全管理措置として、従業者に、情報の適正な取扱いを周知徹底するとともに適切な教育を行います。また、弊社は、従業者に情報を取り扱わせるに当たっては、個人情報保護法第24条その他法令に基づき従業者に対する監督を致します。</p>
+                                    <p>弊社は、情報の適正な取扱いを徹底し、個人情報保護法その他法令に基づき適切に管理します。</p>
                                 </div>
                                 <div>
                                     <h3 className="text-lg font-medium text-slate-800 mb-3">3. 物理的安全管理措置</h3>
@@ -102,10 +97,9 @@ export default function PrivacyPolicy() {
                         <section className="bg-slate-50 p-6 rounded-xl border border-slate-100">
                             <h2 className="text-xl font-semibold text-slate-800 mb-4">8. お問い合わせ</h2>
                             <address className="not-italic space-y-1">
-                                <p>〒001-0032</p>
-                                <p>北海道札幌市北区北３２条西５丁目３−２８ SAKURA-N32 2F</p>
+                                <p>〒065-0021</p>
+                                <p>北海道札幌市東区北21条東3-1-14 第2美香保ローズビラ 603</p>
                                 <p className="font-medium text-slate-900">出張買取サポート札幌</p>
-                                <p>代表 大渕 新吾</p>
                                 <p>Email: support@ansinjp.com</p>
                             </address>
                         </section>
