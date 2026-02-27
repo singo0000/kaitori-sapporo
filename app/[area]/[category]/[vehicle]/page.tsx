@@ -84,11 +84,11 @@ export default function VehiclePage({ params }: Props) {
                 <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30" />
 
                 <div className="relative z-10 max-w-4xl mx-auto text-center">
-                    <div className="inline-block bg-orange-500 text-white text-sm font-bold px-3 py-1 rounded-full mb-6 animate-pulse">
+                    <div className="inline-block bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-full mb-6 animate-pulse">
                         {areaData.name}エリア 強化買取中
                     </div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight">
-                        {areaData.name}で<span className="text-orange-400">{vehicleData.name}</span>を
+                        {areaData.name}で<span className="text-blue-300">{vehicleData.name}</span>を
                         <br className="sm:hidden" />
                         高く売るなら
                     </h1>
@@ -140,7 +140,7 @@ export default function VehiclePage({ params }: Props) {
 
                     <div className="mt-10 bg-gray-50 rounded-xl p-6">
                         <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                            <span className="text-orange-500">◆</span>
+                            <span className="text-blue-600">◆</span>
                             こんな{vehicleData.name}も買取ります
                         </h3>
                         <div className="flex flex-wrap gap-2">
@@ -176,9 +176,9 @@ export default function VehiclePage({ params }: Props) {
                         <br />
                         お電話一本で、最短即日に{vehicleData.name}の査定にお伺いします。
                     </p>
-                    <div className="bg-orange-50 border border-orange-100 rounded-xl p-6 max-w-xl mx-auto">
-                        <p className="font-bold text-orange-800 mb-2">出張査定 完全無料</p>
-                        <p className="text-sm text-orange-700">
+                    <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 max-w-xl mx-auto">
+                        <p className="font-bold text-blue-900 mb-2">出張査定 完全無料</p>
+                        <p className="text-sm text-blue-700">
                             査定額にご納得いただけない場合でも、出張費や査定料は一切いただきません。
                             安心してご依頼ください。
                         </p>
