@@ -47,9 +47,15 @@ export default function HomePage() {
         body: JSON.stringify({ ...form, captchaToken: token }),
       });
       const data = await res.json();
-      setStatus(data.success ? 'ok' : 'err');
-    } catch {
+      if (data.success) {
+        setStatus('ok');
+      } else {
+        setStatus('err');
+        alert(`エラー: ${data.message}`); // 原因をポップアップで表示
+      }
+    } catch (e: any) {
       setStatus('err');
+      alert(`通信エラーが発生しました: ${e.message}`);
     }
   };
 

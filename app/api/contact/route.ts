@@ -12,9 +12,9 @@ export async function POST(req: NextRequest) {
         );
         const captchaData = await captchaRes.json();
 
-        if (!captchaData.success || captchaData.score < 0.5) {
+        if (!captchaData.success || captchaData.score < 0.3) {
             return NextResponse.json(
-                { success: false, message: "reCAPTCHA検証に失敗しました。もう一度お試しください。" },
+                { success: false, message: `reCAPTCHA判定(Score: ${captchaData.score})に失敗しました。` },
                 { status: 400 }
             );
         }
