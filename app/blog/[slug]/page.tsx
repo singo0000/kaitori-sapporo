@@ -1,8 +1,9 @@
-import fs from 'fs';
 import path from 'path';
+import fs from 'fs';
 import { notFound } from 'next/navigation';
 import PostCTA from '@/app/components/PostCTA';
-import BlogSidebar from '@/app/components/BlogSidebar';
+import BlogSidebar, { getSidebarData } from '@/app/components/BlogSidebar';
+import MobileBlogNav from '@/app/components/MobileBlogNav';
 import Link from 'next/link';
 
 // データの読み込み
@@ -73,6 +74,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     // 内部リンクをスマートに置換
     const rewrittenContent = rewriteInternalLinks(post.content);
 
+    // モバイル用ナビゲーションデータ
+    const { recentPosts, categories } = await getSidebarData();
+    const displayPosts = recentPosts.filter((p: any) => p.id !== post.id);
+
     return (
         <div className="min-h-screen bg-gray-50 pt-20 pb-20">
             {/* ヒーロー画像エリア */}
@@ -110,7 +115,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
             {/* コンテンツエリア */}
             <div className="max-w-6xl mx-auto px-4 sm:px-6 -mt-8 relative z-10 flex flex-col lg:flex-row gap-8 items-start">
+
                 <article className="lg:w-2/3 w-full bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 md:p-14 mb-8 lg:mb-0">
+
+                    {/* スマホ専用スライダー（記事を読む前に他記事へアクセスできる） */}
+                    <MobileBlogNav recentPosts={displayPosts} categories={categories} />
 
                     {/* 記事の本文 (Tailwind Typography pluginが綺麗に直してくれる) */}
                     <div
@@ -134,8 +143,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                     </div>
                 </article>
 
-                {/* 右側サイドバー */}
-                <div className="lg:w-1/3 w-full sticky top-24">
+                {/* 右側サイドバー (PCでは追従、高さに制限を設けてスクロール可能に) */}
+                <div className="lg:w-1/3 w-full lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto no-scrollbar pb-8">
                     <BlogSidebar currentPostId={post.id} />
                 </div>
             </div>

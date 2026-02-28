@@ -114,3 +114,5 @@ details summary::-webkit-details-marker {
   background-color: #3b82f6;
   color: white;
 }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 
-async function getSidebarData() {
+export async function getSidebarData() {
     const filePath = path.join(process.cwd(), 'data', 'wp-posts.json');
     if (!fs.existsSync(filePath)) return { recentPosts: [], categories: [] };
     const posts = JSON.parse(fs.readFileSync(filePath, 'utf8')).sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
