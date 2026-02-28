@@ -62,7 +62,7 @@ async function run() {
                     // Already downloaded
                 }
                 post.localFeaturedImage = localUrl;
-            } catch (err) {
+            } catch (err: any) {
                 console.error(`Failed to download (ID: ${post.id}): ${post.featuredImage}`, err.message || err);
             }
         }
