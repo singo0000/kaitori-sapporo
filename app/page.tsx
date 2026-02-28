@@ -63,6 +63,7 @@ export default function HomePage() {
             <div className="flex items-center gap-3 md:gap-6">
               <div className="hidden md:flex gap-6 text-sm font-medium text-slate-500">
                 <Link href="/about" className="hover:text-blue-600 transition-colors">会社情報</Link>
+                <Link href="/blog" className="hover:text-blue-600 transition-colors">ブログ</Link>
                 <a href="#faq" className="hover:text-blue-600 transition-colors">よくある質問</a>
                 <a href="#contact" className="hover:text-blue-600 transition-colors">お問い合わせ</a>
               </div>

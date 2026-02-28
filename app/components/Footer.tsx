@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SITE_INFO, LINE_URL } from "@/app/data/config";
 
 interface FooterProps {
@@ -12,7 +13,9 @@ export default function Footer({ areaName, categoryShortName }: FooterProps) {
                 <div className="grid md:grid-cols-3 gap-8 mb-10">
                     {/* Company Info */}
                     <div>
-                        <h3 className="text-lg font-bold mb-4 text-blue-600">{SITE_INFO.name}</h3>
+                        <Link href="/" className="inline-block hover:opacity-80 transition-opacity">
+                            <h3 className="text-lg font-bold mb-4 text-blue-600">{SITE_INFO.name}</h3>
+                        </Link>
                         <p className="text-gray-400 text-sm leading-relaxed mb-4">
                             北海道札幌近郊を中心に、{categoryShortName}の出張買取を行っております。
                             海外輸出直販の強みを活かし、どこよりも高価な買取を目指しています。
