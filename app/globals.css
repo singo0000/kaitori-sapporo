@@ -7,6 +7,14 @@
     --foreground: 222.2 84% 4.9%;
   }
 
+  /* === Global link reset for Brave/Chromium visited color fix === */
+  a,
+  a:visited,
+  a:link {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
   html {
     font-size: 15px;
     /* Slightly smaller base for mobile fitting */
@@ -187,4 +195,22 @@ details summary::-webkit-details-marker {
 .custom-blog-headings h3,
 .custom-blog-headings h4 {
   scroll-margin-top: 100px;
+}
+
+/* === Prose (blog article) visited link fix for Brave/Chromium === */
+.prose a,
+.prose a:visited,
+.prose a:link {
+  color: #2563eb !important;
+  /* blue-600 */
+}
+
+.prose a:hover {
+  color: #3b82f6 !important;
+  /* blue-500 */
+}
+
+.custom-blog-headings a,
+.custom-blog-headings a:visited {
+  color: #2563eb !important;
 }
