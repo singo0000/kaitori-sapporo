@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import PostCTA from '@/app/components/PostCTA';
 import BlogSidebar, { getSidebarData } from '@/app/components/BlogSidebar';
 import MobileBlogNav from '@/app/components/MobileBlogNav';
+import TableOfContents from '@/app/components/TableOfContents';
 import Link from 'next/link';
 
 // データの読み込み
@@ -17,16 +18,35 @@ async function getPosts() {
 // 内部リンクを新サイト（Vercel側）の/blogに書き換えるスーパー機能
 function rewriteInternalLinks(html: string) {
     if (!html) return "";
-    // ansinjp.net という旧ドメイン宛てのリンクを探す（wp-contentなどの画像パスは除く）
     return html.replace(/href="https?:\/\/(?:www\.)?ansinjp\.net\/(?!wp-content\/)([^"\/]+)\/?([^"]*)"/g, (match, p1, p2) => {
-        // パスを解析して一番最後の部分（スラッグ）を取り出して /blog/スラッグ に変換
         const parts = [p1, p2].filter(Boolean).join('/').split('/').filter(Boolean);
         const slug = parts[parts.length - 1];
         if (slug) {
             return `href="/blog/${slug}"`;
         }
-        return `href="/blog"`; // トップへのリンクだった場合などは一覧へ
+        return `href="/blog"`;
     });
+}
+
+// 見出し（h2, h3）を抽出して目次を自動生成 ＆ それぞれにIDを付与
+function parseContentAndToc(html: string) {
+    if (!html) return { html: "", toc: [] };
+    const toc: { id: string; text: string; level: number }[] = [];
+    let counter = 0;
+
+    const processedHtml = html.replace(/<h([23])([^>]*)>(.*?)<\/h\1>/gi, (match, level, attrs, content) => {
+        counter++;
+        const id = `toc-heading-${counter}`;
+        const cleanText = content.replace(/<[^>]+>/g, '').trim();
+        if (cleanText) {
+            toc.push({ id, text: cleanText, level: parseInt(level, 10) });
+        }
+        // 古いID設定を消去して新しいIDを追加
+        const cleanAttrs = attrs.replace(/id="[^"]*"/, '').trim();
+        return `<h${level} id="${id}" ${cleanAttrs}>${content}</h${level}>`;
+    });
+
+    return { html: processedHtml, toc };
 }
 
 // 静的パスの生成（ビルド時に全ページを作っておくことで爆速にする）
@@ -73,6 +93,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
     // 内部リンクをスマートに置換
     const rewrittenContent = rewriteInternalLinks(post.content);
+
+    // 目次の生成とID付与
+    const { html: finalHtml, toc } = parseContentAndToc(rewrittenContent);
 
     // モバイル用ナビゲーションデータ
     const { recentPosts, categories } = await getSidebarData();
@@ -121,10 +144,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                     {/* スマホ専用スライダー（記事を読む前に他記事へアクセスできる） */}
                     <MobileBlogNav recentPosts={displayPosts} categories={categories} />
 
-                    {/* 記事の本文 (Tailwind Typography pluginが綺麗に直してくれる) */}
+                    {/* 自動生成された目次（Table of Contents） */}
+                    <TableOfContents items={toc} />
+
+                    {/* 記事の本文 (Tailwind Typography pluginが綺麗に直してくれる + custom-blog-headings) */}
                     <div
-                        className="prose prose-blue prose-lg max-w-none text-gray-700 leading-loose prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-headings:text-gray-900 prose-img:rounded-xl prose-img:shadow-md"
-                        dangerouslySetInnerHTML={{ __html: rewrittenContent }}
+                        className="prose prose-blue prose-lg max-w-none text-gray-700 leading-loose prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-headings:text-gray-900 prose-img:rounded-xl prose-img:shadow-md custom-blog-headings"
+                        dangerouslySetInnerHTML={{ __html: finalHtml }}
                     />
 
                     <hr className="my-12 border-gray-200" />
