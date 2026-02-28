@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import { SITE_INFO } from "@/app/data/config";
 import ChatWidget from "./components/ChatWidget";
 import PurchaseTicker from "./components/PurchaseTicker";
-
-const notoSansJP = Noto_Sans_JP({
-  weight: ["400", "500", "700", "900"],
-  variable: "--font-noto-sans-jp",
-  display: "swap",
-  preload: false,
-});
 
 export const metadata: Metadata = {
   title: `${SITE_INFO.name} | 北海道札幌近郊の車買取・廃車買取`,
@@ -55,9 +47,12 @@ export default function RootLayout({
     <html lang="ja">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
       </head>
       <body
-        className={`${notoSansJP.variable} font-sans antialiased pt-9 sm:pt-10`}
+        className="font-sans antialiased pt-9 sm:pt-10"
       >
         <PurchaseTicker />
         <div className="safe-bottom">
