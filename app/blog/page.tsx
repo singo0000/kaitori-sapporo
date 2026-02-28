@@ -44,17 +44,38 @@ export default async function BlogIndex(props: { searchParams: Promise<{ categor
 
     return (
         <div className="min-h-screen bg-gray-50 pt-24 pb-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                <div className="text-center mb-12">
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        {category ? `「${category}」の記事一覧` : 'クルマの買取・お役立ちガイド'}
-                    </h1>
-                    {!category && (
-                        <p className="text-gray-600 max-w-2xl mx-auto">
-                            札幌での高価買取のコツや、廃車手続き、北海道ならではの冬道メンテナンスなど、プロの視点で徹底解説します。
-                        </p>
-                    )}
+            <div className="bg-white border-b border-gray-200 mb-8 pt-8 pb-8 -mt-8 shadow-sm">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                    {/* パンくずリスト */}
+                    <nav className="mb-6 flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-500 font-medium font-sans w-full" aria-label="Breadcrumb">
+                        <Link href="/" className="hover:text-blue-600 transition-colors flex items-center gap-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                            ホーム
+                        </Link>
+                        <span>&gt;</span>
+                        <Link href="/blog" className="hover:text-blue-600 transition-colors">ブログ一覧</Link>
+                        {category && (
+                            <>
+                                <span>&gt;</span>
+                                <span className="text-gray-900">{category}</span>
+                            </>
+                        )}
+                    </nav>
+
+                    <div className="text-center">
+                        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+                            {category ? `「${category}」の記事一覧` : 'クルマの買取・お役立ちガイド'}
+                        </h1>
+                        {!category && (
+                            <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+                                札幌での高価買取のコツや、廃車手続き、北海道ならではの冬道メンテナンスなど、プロの視点で徹底解説する情報メディアです。
+                            </p>
+                        )}
+                    </div>
                 </div>
+            </div>
+
+            <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
                 {/* ヒーロー記事（トップページ最新時のみ） */}
                 {featuredPost && (

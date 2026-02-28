@@ -113,6 +113,24 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
                 <div className="absolute inset-x-0 bottom-0">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
+                        {/* パンくずリスト */}
+                        <nav className="mb-6 flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-400 font-medium font-sans w-full" aria-label="Breadcrumb">
+                            <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                                ホーム
+                            </Link>
+                            <span>&gt;</span>
+                            <Link href="/blog" className="hover:text-white transition-colors">ブログ</Link>
+                            {post.categories && post.categories[0] && (
+                                <>
+                                    <span>&gt;</span>
+                                    <Link href={`/blog?category=${encodeURIComponent(post.categories[0])}`} className="hover:text-white transition-colors">
+                                        {post.categories[0]}
+                                    </Link>
+                                </>
+                            )}
+                        </nav>
+
                         {post.categories && post.categories[0] && (
                             <span className="inline-block bg-blue-600/90 backdrop-blur-sm text-white text-sm font-bold px-4 py-1.5 rounded-full mb-4 shadow-sm border border-blue-500/30">
                                 {post.categories[0]}
