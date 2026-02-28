@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { notFound } from 'next/navigation';
 import PostCTA from '@/app/components/PostCTA';
+import BlogSidebar from '@/app/components/BlogSidebar';
 import Link from 'next/link';
 
 // データの読み込み
@@ -83,7 +84,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
                 <div className="absolute inset-x-0 bottom-0">
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-12">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
                         {post.categories && post.categories[0] && (
                             <span className="inline-block bg-blue-600/90 backdrop-blur-sm text-white text-sm font-bold px-4 py-1.5 rounded-full mb-4 shadow-sm border border-blue-500/30">
                                 {post.categories[0]}
@@ -108,8 +109,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             </div>
 
             {/* コンテンツエリア */}
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-8 relative z-10">
-                <article className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 md:p-14">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 -mt-8 relative z-10 flex flex-col lg:flex-row gap-8 items-start">
+                <article className="lg:w-2/3 w-full bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 md:p-14 mb-8 lg:mb-0">
 
                     {/* 記事の本文 (Tailwind Typography pluginが綺麗に直してくれる) */}
                     <div
@@ -132,6 +133,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                         </Link>
                     </div>
                 </article>
+
+                {/* 右側サイドバー */}
+                <div className="lg:w-1/3 w-full sticky top-24">
+                    <BlogSidebar currentPostId={post.id} />
+                </div>
             </div>
         </div>
     );
