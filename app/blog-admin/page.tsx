@@ -1,15 +1,6 @@
 "use client";
 
-import { useState } from "react";
-
-// ダミー記事データ
-const DEMO_POSTS = [
-    { id: 1, title: "札幌で車を高く売る完全ガイド：地域特化のプロが教える高価買取の秘訣", category: "買取ガイド", status: "published", date: "2025-04-06", views: 1240 },
-    { id: 2, title: "2026年春の車買取相場予測｜札幌で高く売るベストタイミングはいつ？", category: "買取ガイド", status: "published", date: "2025-03-20", views: 890 },
-    { id: 3, title: "廃車になりそうな車、捨てる前にまず査定を【北海道版】", category: "廃車・処分", status: "published", date: "2025-03-15", views: 650 },
-    { id: 4, title: "北海道の冬道で傷んだ車でも買取できる？実際の査定事例", category: "北海道特化", status: "draft", date: "2025-03-10", views: 0 },
-    { id: 5, title: "タイヤチェーンで冬の運転を安全に！スタッドレスとの違いを徹底解説", category: "カーライフ", status: "published", date: "2025-03-05", views: 430 },
-];
+import { useState, useEffect } from "react";
 
 const CATEGORIES = ["買取ガイド", "廃車・処分", "北海道特化", "カーライフ", "メンテナンス", "ドライブ・観光"];
 
@@ -20,8 +11,26 @@ export default function BlogAdmin() {
     const [pw, setPw] = useState("");
     const [pwError, setPwError] = useState(false);
     const [view, setView] = useState<"list" | "edit" | "new">("list");
-    const [posts, setPosts] = useState(DEMO_POSTS);
-    const [editPost, setEditPost] = useState<null | typeof DEMO_POSTS[0]>(null);
+    const [posts, setPosts] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [editPost, setEditPost] = useState<any | null>(null);
+
+    // 実際のデータを読み込む
+    useEffect(() => {
+        if (authed) {
+            setIsLoading(true);
+            fetch('/api/posts')
+                .then(res => res.json())
+                .then(data => {
+                    if (Array.isArray(data)) setPosts(data);
+                    setIsLoading(false);
+                })
+                .catch(err => {
+                    console.error(err);
+                    setIsLoading(false);
+                });
+        }
+    }, [authed]);
 
     // 新規記事フォームの状態
     const [form, setForm] = useState({
@@ -110,10 +119,12 @@ export default function BlogAdmin() {
                     <div className="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden">
                         <div className="px-6 py-4 border-b border-gray-800 flex items-center justify-between">
                             <h2 className="font-bold text-lg">記事一覧</h2>
-                            <span className="text-gray-400 text-sm">{posts.length}件</span>
+                            <span className="text-gray-400 text-sm">{isLoading ? "読み込み中..." : `${posts.length}件`}</span>
                         </div>
-                        <div className="divide-y divide-gray-800">
-                            {posts.map(post => (
+                        <div className="divide-y divide-gray-800 h-[600px] overflow-y-auto">
+                            {isLoading ? (
+                                <div className="p-8 text-center text-gray-500">データを取得しています...</div>
+                            ) : posts.map(post => (
                                 <div key={post.id} className="px-6 py-4 flex items-center gap-4 hover:bg-gray-800/50 transition-colors group">
                                     <div className="flex-1 min-w-0">
                                         <div className="flex items-center gap-2 mb-1">
@@ -126,11 +137,28 @@ export default function BlogAdmin() {
                                         <p className="text-gray-500 text-sm mt-0.5">{post.date} · {post.views.toLocaleString()} 閲覧</p>
                                     </div>
                                     <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <button onClick={() => { setEditPost(post); setView("edit"); }} className="text-blue-400 hover:text-blue-300 text-sm px-3 py-1.5 border border-blue-800 hover:border-blue-600 rounded-lg transition-colors">編集</button>
+                                        <button onClick={() => {
+                                            setEditPost(post);
+                                            // 編集画面用にフォームにもデータをセット
+                                            setForm({
+                                                title: post.title || "",
+                                                category: post.category || "未分類",
+                                                status: post.status || "draft",
+                                                content: post.content || "",
+                                                metaTitle: post.title || "",
+                                                metaDesc: (post.excerpt || "").substring(0, 100).replace(/<[^>]*>?/gm, ''), // HTMLタグ除去
+                                                keyword: "",
+                                                cta: true,
+                                            });
+                                            setView("edit");
+                                        }} className="text-blue-400 hover:text-blue-300 text-sm px-3 py-1.5 border border-blue-800 hover:border-blue-600 rounded-lg transition-colors">編集</button>
                                         <button className="text-red-400 hover:text-red-300 text-sm px-3 py-1.5 border border-red-900 hover:border-red-700 rounded-lg transition-colors">削除</button>
                                     </div>
                                 </div>
                             ))}
+                            {posts.length === 0 && !isLoading && (
+                                <div className="p-8 text-center text-gray-500">記事がありません</div>
+                            )}
                         </div>
                     </div>
                 </main>
@@ -177,11 +205,25 @@ export default function BlogAdmin() {
                     <div className="bg-gray-900 border border-gray-800 rounded-2xl p-5">
                         <input
                             type="text"
-                            value={view === "new" ? form.title : editPost?.title ?? ""}
-                            onChange={e => view === "new" && setForm({ ...form, title: e.target.value })}
+                            value={view === "new" ? form.title : form.title}
+                            onChange={e => setForm({ ...form, title: e.target.value })}
                             placeholder="記事タイトルを入力…（例：札幌市南区で車を高く売る方法）"
                             className="w-full bg-transparent text-2xl font-bold text-white placeholder-gray-600 focus:outline-none"
                         />
+                    </div>
+
+                    {/* AIアシスタントエリア追加 */}
+                    <div className="bg-blue-950/20 border border-blue-900/50 rounded-2xl p-4 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <span className="text-2xl">🤖</span>
+                            <div>
+                                <h3 className="text-blue-400 font-bold text-sm">AI アシスタント</h3>
+                                <p className="text-blue-300/70 text-xs">本文の入力からSEO設定、アイキャッチ画像を自動生成できます。</p>
+                            </div>
+                        </div>
+                        <button className="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors flex items-center gap-1 shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                            ✨ フル装備で自動生成（デモ）
+                        </button>
                     </div>
 
                     {/* 本文エディタ */}
@@ -193,20 +235,18 @@ export default function BlogAdmin() {
                                 ))}
                             </div>
                             <textarea
-                                value={view === "new" ? form.content : ""}
-                                onChange={e => view === "new" && setForm({ ...form, content: e.target.value })}
+                                value={form.content}
+                                onChange={e => setForm({ ...form, content: e.target.value })}
                                 placeholder={`# 見出し\n\n記事の本文をここに入力…\n\nマークダウン形式で書けます。\n\n---\n\n## よくある質問\n\n**Q. 動かない車でも買取できますか？**\n\nA. はい、不動車・廃車・事故車でも対応可能です…`}
-                                rows={20}
-                                className="w-full bg-transparent text-gray-300 p-5 focus:outline-none font-mono text-sm leading-relaxed resize-none"
+                                rows={25}
+                                className="w-full bg-transparent text-gray-300 p-5 focus:outline-none text-sm leading-relaxed resize-none"
+                            // dangerouslySetInnerHTMLを模倣せずにそのままテキスト編集できるようにするデモ
                             />
                         </div>
                     ) : (
-                        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8">
-                            <div className="text-gray-500 text-center py-12">
-                                <div className="text-4xl mb-3">👁️</div>
-                                <p className="text-lg font-medium text-gray-400">プレビューモード</p>
-                                <p className="text-sm mt-1">ここに記事の実際の表示が出ます</p>
-                            </div>
+                        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8 prose prose-invert max-w-none">
+                            <h1 className="text-2xl font-bold mb-4">{form.title}</h1>
+                            <div dangerouslySetInnerHTML={{ __html: form.content }} />
                         </div>
                     )}
                 </div>
@@ -220,8 +260,8 @@ export default function BlogAdmin() {
                             <div>
                                 <label className="text-sm text-gray-400 mb-1.5 block">ステータス</label>
                                 <select
-                                    value={view === "new" ? form.status : editPost?.status ?? "draft"}
-                                    onChange={e => view === "new" && setForm({ ...form, status: e.target.value as "draft" | "published" })}
+                                    value={form.status}
+                                    onChange={e => setForm({ ...form, status: e.target.value as "draft" | "published" })}
                                     className="w-full bg-gray-800 border border-gray-700 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
                                     <option value="draft">下書き</option>
@@ -231,11 +271,11 @@ export default function BlogAdmin() {
                             <div>
                                 <label className="text-sm text-gray-400 mb-1.5 block">カテゴリ</label>
                                 <select
-                                    value={view === "new" ? form.category : editPost?.category ?? "買取ガイド"}
-                                    onChange={e => view === "new" && setForm({ ...form, category: e.target.value })}
+                                    value={form.category}
+                                    onChange={e => setForm({ ...form, category: e.target.value })}
                                     className="w-full bg-gray-800 border border-gray-700 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
-                                    {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                    {[...new Set([...CATEGORIES, form.category])].map(c => <option key={c} value={c}>{c}</option>)}
                                 </select>
                             </div>
                         </div>
@@ -243,12 +283,27 @@ export default function BlogAdmin() {
 
                     {/* アイキャッチ画像 */}
                     <div className="bg-gray-900 border border-gray-800 rounded-2xl p-5">
-                        <h3 className="font-bold text-sm text-gray-400 uppercase tracking-wider mb-4">アイキャッチ画像</h3>
-                        <div className="border-2 border-dashed border-gray-700 rounded-xl p-6 text-center hover:border-blue-600 transition-colors cursor-pointer">
-                            <div className="text-3xl mb-2">🖼️</div>
-                            <p className="text-gray-400 text-sm">クリックして画像をアップロード</p>
-                            <p className="text-gray-600 text-xs mt-1">推奨: 1200×630px</p>
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="font-bold text-sm text-gray-400 uppercase tracking-wider">アイキャッチ画像</h3>
+                            <button className="text-blue-400 hover:text-blue-300 text-xs px-2 py-1 border border-blue-900/50 hover:bg-blue-900/30 rounded transition-colors flex items-center gap-1">
+                                <span>✨</span> AIで生成
+                            </button>
                         </div>
+
+                        {view === "edit" && editPost?.featuredImage ? (
+                            <div className="relative group rounded-xl overflow-hidden border border-gray-700">
+                                <img src={editPost.featuredImage} alt="アイキャッチ" className="w-full h-auto object-cover" />
+                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <button className="bg-gray-800 text-white px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-gray-700">変更する</button>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="border-2 border-dashed border-gray-700 rounded-xl p-6 text-center hover:border-blue-600 transition-colors cursor-pointer bg-gray-800/50">
+                                <div className="text-3xl mb-2">🖼️</div>
+                                <p className="text-gray-400 text-sm">クリックして画像をアップロード</p>
+                                <p className="text-gray-600 text-xs mt-1">推奨: 1200×630px</p>
+                            </div>
+                        )}
                     </div>
 
                     {/* SEO設定 */}
