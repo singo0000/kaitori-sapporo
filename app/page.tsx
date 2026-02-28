@@ -62,7 +62,7 @@ export default function HomePage() {
             </Link>
             <div className="flex items-center gap-3 md:gap-6">
               <div className="hidden md:flex gap-6 text-sm font-medium text-slate-500">
-                <Link href="/about" className="hover:text-blue-600 transition-colors">会社情報</Link>
+                <Link href="/about" className="hover:text-blue-600 transition-colors">運営について</Link>
                 <Link href="/blog" className="hover:text-blue-600 transition-colors">ブログ</Link>
                 <a href="#faq" className="hover:text-blue-600 transition-colors">よくある質問</a>
                 <a href="#contact" className="hover:text-blue-600 transition-colors">お問い合わせ</a>
@@ -323,7 +323,7 @@ export default function HomePage() {
                     { title: "お車の査定", desc: "状態を確認し、根拠をお伝えしながら丁寧に金額をご提示します。" },
                     { title: "ご確認・決断", desc: "ご納得いただけた場合のみ、引取り日・お支払い日を決めます。" },
                     { title: "書類とお支払い", desc: "代金をお受け取りの上、お車とお別れです。" },
-                    { title: "完了・手続き代行", desc: "名義変更など残りの手続きはすべて弊社が代行します。" },
+                    { title: "完了・手続き代行", desc: "名義変更など残りの手続きはすべて当サービスが代行します。" },
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-5 relative">
                       <div className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-black flex items-center justify-center flex-shrink-0 z-10 shadow-sm">
@@ -504,7 +504,7 @@ export default function HomePage() {
             出張買取サポート<span className="text-blue-400">札幌</span>
           </Link>
           <div className="flex justify-center gap-6 mb-5 text-xs text-slate-500">
-            <Link href="/about" className="hover:text-slate-300 transition-colors">会社情報</Link>
+            <Link href="/about" className="hover:text-slate-300 transition-colors">運営について</Link>
             <Link href="/privacy" className="hover:text-slate-300 transition-colors">プライバシーポリシー</Link>
             <Link href="/terms" className="hover:text-slate-300 transition-colors">利用規約</Link>
           </div>
