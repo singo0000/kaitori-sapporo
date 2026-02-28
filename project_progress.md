@@ -46,18 +46,19 @@
   - Aboutページはサイバーパンク風の意図的な赤色あり（正常）
 
 ### 優先度：中（インフラ整理）
-- [ ] **ansinjp.com のドメイン移管**（明日実施予定）
-  - 現状: ペライチで管理
+### 優先度：中（インフラ整理）
+- [ ] **ansinjp.com のドメイン移管**（ペライチへ問い合わせ中・返答待ち）
   - 移管先候補: ムームードメイン
-  - 手順: ペライチ管理画面 → 転出コード(AUTH CODE)取得 → ムームードメインで移管申請
+  - 手順: ペライチから「トランスファーできますか」とメールし返信待ち
   - ⚠️ メール(support@ansinjp.com)はGoogle Workspace継続でOK・MXレコード引き継ぎ必要
-  - 所要時間: 30〜60分（まとまった時間が必要）
-- [ ] **ansinjp.net → ansinjp.com/blog への記事移行**
-  - WordPress REST API から全記事（約300記事）を自動取得するスクリプト作成
-  - アイキャッチ画像（約300枚）の一括ダウンロード
-  - kaitori-sapporo に `/blog` セクションを追加
-  - SEO: `generateMetadata()` / JSON-LD / サイトマップ自動生成（Yoastの代替）
-  - 移行完了後: ansinjp.net → ansinjp.com/blog へ301リダイレクト設定
+- [x] **ansinjp.net → ansinjp.com/blog への記事移行（ローカル作業完了）**
+  - WordPress REST API から全記事（約300記事）を `data/wp-posts.json` へ抽出完了
+  - アイキャッチ画像（約290枚）を `public/blog-images/` へ一括ダウンロード完了
+  - kaitori-sapporo に `/blog` セクションを追加済み（ローカルで閲覧可能）
+- [ ] **記事移行のネットへの公開（Vercelへのデプロイ）**
+  - デプロイ時の重さや制限がないか確認し、プッシュする
+  - SEO: `generateMetadata()` / JSON-LD / サイトマップ自動生成の最終確認
+- [ ] 移行完了後: ansinjp.net → ansinjp.com/blog へ301リダイレクト設定
 - [ ] **コノHAWING（WordPress）解約** ─ 記事移行完了後
 - [ ] **ペライチ解約** ─ ドメイン移管完了後
 
